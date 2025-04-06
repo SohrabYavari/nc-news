@@ -1,6 +1,6 @@
 import React from "react";
-import date from "../../assets/date.svg";
-import vote from "../../assets/vote.svg";
+import DateSvg from "../svgs/Date";
+import Voted from "../svgs/Voted";
 
 export default function Card({ img, title, topic, author, created_at, votes }) {
   const formattedDate = new Date(created_at).toLocaleDateString("en-UK", {
@@ -10,16 +10,18 @@ export default function Card({ img, title, topic, author, created_at, votes }) {
   });
 
   return (
-    <div className="card md:h-[475px] p-1 w-full mx-auto bg-neutral text-neutral-content hover:scale-105 transition-all duration-300">
+    <div className="card md:h-[475px] p-1 w-full mx-auto shadow-2xl hover:scale-95 transition-all duration-300">
       <div className="flex justify-end gap-[10%] p-2 border-b-2">
         <p className="flex gap-2 items-center">
-          <img src={date} alt="date image" className="w-5" /> {formattedDate}
+          <DateSvg /> {formattedDate}
         </p>
         <p className="flex gap-2 items-center">
-          <img src={vote} alt="date image" className="w-5" /> {votes}
+          <Voted /> {votes}
         </p>
       </div>
-        <h3 className="py-5 flex justify-center items-center w-full h-full font-semibold text-center md:text-2xl">{title}</h3>
+      <h3 className="py-5 flex justify-center items-center w-full h-full font-semibold text-center md:text-2xl">
+        {title}
+      </h3>
       <div className="p-1 w-full h-full flex flex-col justify-end">
         <img
           src={img}

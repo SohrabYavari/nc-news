@@ -1,50 +1,46 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { postCommentOnArticle } from "../../utils/api";
+import { UserContext } from "../contexts/UserContext";
+
+// img imports
+import Quotes from "../svgs/Quotes";
 
 export default function CommentForm({ article }) {
-  const [username, setUsername] = useState("");
   const [body, setBody] = useState("");
   const [error, setError] = useState("");
+  const user = useContext(UserContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      await postCommentOnArticle(article.article_id, username, body);
-      setUsername("");
+      await postCommentOnArticle(article.article_id, user.username, body);
       setBody("");
     } catch (err) {
       console.error("Error: ", err);
-      if (err) {
-        setError("Failed to post comment. Please try again.");
-      }
+      setError("Failed to post comment. Please try again.");
     }
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="flex flex-col border-2 p-2 rounded-2xl"
-    >
-      <fieldset className="px-2 flex w-full gap-2">
-        <label>Username: </label>
-        <input
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          className="border w-full"
-          required
-        />
-      </fieldset>
-      <fieldset className="px-2 flex flex-col w-full gap-2">
-        <label>Comment: </label>
+    <form onSubmit={handleSubmit} className="flex flex-col py-5 md:w-[75%] mx-auto">
+      <fieldset className="px-2 flex flex-col w-full relative ">
+      <div className="rotate-y-180 absolute">
+          <Quotes />
+        </div>
         <textarea
           value={body}
           onChange={(e) => setBody(e.target.value)}
           required
-          className="max-w-full border"
+          className="max-w-full border pt-5 mt-5 rounded-sm"
         />
+        
+        <div className="w-full flex justify-end rotate-x-180">
+          <Quotes />
+        </div>
       </fieldset>
+
+
       {error && <p>{error}</p>}
       <button type="submit" className="btn btn-accent m-2">
         Post Comment

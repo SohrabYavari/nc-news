@@ -32,7 +32,7 @@ export default function ArticlesPage() {
   if (loading) {
     return (
       <div className="flex w-ful h-screen justify-center items-center">
-        <BounceLoader />
+        <BounceLoader color="#167241"/>
       </div>
     );
   }
@@ -41,7 +41,7 @@ export default function ArticlesPage() {
     <section id="articles" className="pt-20">
       <TopicsDropdown setPageTopic={setPageTopic} />
       <ul className="pt-20 px-2 grid md:grid-cols-3 gap-10">
-        <ArticleList articles={ncArticles} />
+          <ArticleList articles={ncArticles} />
       </ul>
     </section>
   );

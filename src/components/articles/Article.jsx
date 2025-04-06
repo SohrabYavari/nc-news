@@ -10,6 +10,7 @@ import { getArticleComments, getArticleById } from "../../utils/api";
 import CommentList from "../comments/CommentList";
 import ArticleDetails from "./ArticleDetails";
 import CommentForm from "../comments/CommentForm";
+import { UserContext } from "../contexts/UserContext";
 
 export default function Article() {
   // state management
@@ -60,12 +61,14 @@ export default function Article() {
   if (loading) {
     return (
       <div className="flex w-ful h-screen justify-center items-center">
-        <BounceLoader />
+        <BounceLoader color="#167241" />
       </div>
     );
   }
 
   if (!article) return <p className="pt-20">No article found</p>;
+
+  const user = { username: "anon" };
 
   return (
     <div>
@@ -75,9 +78,11 @@ export default function Article() {
       >
         {`<---`} Back to Articles
       </button>
-      <ArticleDetails article={article} />
-      <CommentForm article={article} />
-      <CommentList comments={articleComment} />
+      <UserContext.Provider value={user}>
+        <ArticleDetails article={article} />
+        <CommentForm article={article} />
+        <CommentList comments={articleComment} />
+      </UserContext.Provider>
     </div>
   );
 }

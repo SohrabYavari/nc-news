@@ -5,8 +5,8 @@ import ThemeController from "./ThemeController";
 
 export default function Navbar() {
   return (
-    <nav className="navbar bg-secondary absolute shadow-xl">
-      <ul className="flex gap-5 font-bold">
+    <nav className="navbar bg-primary text-primary-content absolute shadow-xl">
+      <ul className="flex gap-5 font-bold mx-auto">
         {navLinks.map((item) => {
           return (
             <ul key={item.id} className="capitalize">
