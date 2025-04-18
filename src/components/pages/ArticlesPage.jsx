@@ -28,21 +28,18 @@ export default function ArticlesPage() {
     fetchArticles();
   }, [pageTopic]);
 
-  // loading spinner
-  if (loading) {
-    return (
-      <div className="flex w-ful h-screen justify-center items-center">
-        <BounceLoader color="#167241"/>
-      </div>
-    );
-  }
-
   return (
     <section id="articles" className="pt-20">
       <TopicsDropdown setPageTopic={setPageTopic} />
-      <ul className="pt-20 px-2 grid md:grid-cols-3 gap-10">
+      {loading ? (
+        <div className="flex w-full h-screen justify-center items-center">
+          <BounceLoader color="#167241" />
+        </div>
+      ) : (
+        <ul className="pt-20 px-2 grid md:grid-cols-3 gap-10">
           <ArticleList articles={ncArticles} />
-      </ul>
+        </ul>
+      )}
     </section>
   );
 }
