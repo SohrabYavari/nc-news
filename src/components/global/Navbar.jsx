@@ -5,16 +5,21 @@ import ThemeController from "./ThemeController";
 
 export default function Navbar() {
   return (
-    <nav className="navbar bg-primary text-primary-content absolute shadow-xl">
-      <ul className="flex gap-5 font-bold mx-auto">
+    <nav className="navbar bg-primary text-primary-content absolute shadow-md shadow-primary">
+      <ul className="flex gap-2.5 px-5 font-bold mx-auto relative w-full">
         {navLinks.map((item) => {
           return (
-            <ul key={item.id} className="capitalize">
-              <Link to={item.navLink}>{item.navName}</Link>
-            </ul>
+            <li key={item.id} className="capitalize">
+              <Link to={item.navLink} className="flex gap-1">
+                <div className="w-5">{item.navIcon}</div>
+                <p>{item.navName}</p>
+              </Link>
+            </li>
           );
         })}
-        <ThemeController />
+        <div className="absolute right-2">
+          <ThemeController />
+        </div>
       </ul>
     </nav>
   );

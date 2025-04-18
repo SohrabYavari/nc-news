@@ -3,7 +3,7 @@ import React from "react";
 export default function ThemeController() {
   return (
     <label className="toggle text-base-content">
-      <input type="checkbox" value="forest" className="theme-controller" />
+      <input type="checkbox" value="black" className="theme-controller" />
 
       <svg
         aria-label="sun"
